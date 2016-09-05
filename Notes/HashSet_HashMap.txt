@@ -1,0 +1,111 @@
+Hashset is not a key,value store. Just value
+
+java.lang.Object
+java.util.AbstractCollection<E>
+java.util.AbstractSet<E>
+java.util.HashSet<E>
+
+
+Methods:
+=======
+boolean	add(E e)
+Adds the specified element to this set if it is not already present.
+
+void	clear()
+Removes all of the elements from this set.
+
+Object	clone()
+Returns a shallow copy of this HashSet instance: the elements themselves are not cloned.
+
+boolean	contains(Object o)
+Returns true if this set contains the specified element.
+
+boolean	isEmpty()
+Returns true if this set contains no elements.
+
+Iterator<E>	iterator()
+Returns an iterator over the elements in this set.
+
+boolean	remove(Object o)
+Removes the specified element from this set if it is present.
+
+int	size()
+Returns the number of elements in this set (its cardinality).
+
+Example:
+
+import java.util.*;
+
+public class HashSetDemo {
+
+   public static void main(String args[]) {
+      // create a hash set
+      HashSet hs = new HashSet();
+      // add elements to the hash set
+      hs.add("B");
+      hs.add("A");
+      hs.add("D");
+      hs.add("E");
+      hs.add("C");
+      hs.add("F");
+      System.out.println(hs);
+   }
+}
+
+
+HashMap
+public class HashMap<K,V>
+extends AbstractMap<K,V>
+implements Map<K,V>, Cloneable, Serializable
+
+Constructors:
+============
+HashMap()
+Constructs an empty HashMap with the default initial capacity (16) and the default load factor (0.75).
+HashMap(int initialCapacity)
+Constructs an empty HashMap with the specified initial capacity and the default load factor (0.75).
+HashMap(int initialCapacity, float loadFactor)
+Constructs an empty HashMap with the specified initial capacity and load factor.
+HashMap(Map<? extends K,? extends V> m)
+Constructs a new HashMap with the same mappings as the specified Map.
+
+Methods:
+=======
+void	clear()
+Removes all of the mappings from this map.
+
+Object	clone()
+Returns a shallow copy of this HashMap instance: the keys and values themselves are not cloned.
+
+boolean	containsKey(Object key)
+Returns true if this map contains a mapping for the specified key.
+
+boolean	containsValue(Object value)
+Returns true if this map maps one or more keys to the specified value.
+
+Set<Map.Entry<K,V>>	entrySet()
+Returns a Set view of the mappings contained in this map.
+
+V	get(Object key)
+Returns the value to which the specified key is mapped, or null if this map contains no mapping for the key.
+
+boolean	isEmpty()
+Returns true if this map contains no key-value mappings.
+
+** Set<K>	keySet()
+Returns a Set view of the keys contained in this map.
+
+V	put(K key, V value)
+Associates the specified value with the specified key in this map.
+
+void	putAll(Map<? extends K,? extends V> m)
+Copies all of the mappings from the specified map to this map.
+
+V	remove(Object key)
+Removes the mapping for the specified key from this map if present.
+
+int	size()
+Returns the number of key-value mappings in this map.
+
+**Collection<V>	values()
+Returns a Collection view of the values contained in this map.

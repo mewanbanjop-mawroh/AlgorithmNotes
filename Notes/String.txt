@@ -1,0 +1,7 @@
+To array
+String s = "hello";
+s.toCharArray()
+
+To String
+
+String s = new String(arr);

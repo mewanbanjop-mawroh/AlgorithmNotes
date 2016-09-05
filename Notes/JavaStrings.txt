@@ -1,0 +1,8 @@
+1. String to char array
+
+    String s ="Hello";
+    char[] arr = s.toCharArray();
+
+2. String Length 
+    
+    s.length() //arr.length --property

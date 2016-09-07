@@ -1,0 +1,5 @@
+Binary Search - problem (over flow)
+
+mid=l+h/2
+
+mid=l+((h-l)/2)

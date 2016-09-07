@@ -1,0 +1,4 @@
+Sliding Window Maximum
+Lovely Number
+A string -> return all the substring
+abc = 

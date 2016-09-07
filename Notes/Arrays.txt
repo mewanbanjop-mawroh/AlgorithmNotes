@@ -1,0 +1,2 @@
+1.Fill arrays with false:
+Arrays.fill(digitHashTable,false);

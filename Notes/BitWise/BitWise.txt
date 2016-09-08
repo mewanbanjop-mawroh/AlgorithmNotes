@@ -1,0 +1,153 @@
+Theory:
+------
+
+~ (inverse)
+----------
+~100 = 011
+
+
+XOR(^)          And(&)      Or(|)
+-----
+X^1s= ~X        X&0s=0      X|0s=X
+X^0s= X         X&1s=X      X|1s=1s
+X^X = 0         X&X=X       X|X=X
+
+X^~X=1s
+
+Multiply by powers of 2:
+-----------------------
+0110 * 0010 = 6*2 = 0110 <<1 (pow=1) = 12 = 1100
+0110 * 0100 = 6*4 = 0110 <<2 (pow=2) = 24 = 11000
+
+Two's Compliment:
+-----------------
+In computers, +ve integers (say K) are stored as itself while 
+the -ve are stored as 2's compliment of K with 1 as bit sign.
+-K => (1,2pow(n-1)-K)//two's compliment. (n is the number of bits)
+or -K=> ~K+1 ( and vice versa K = ~(-K)+1)
+
+Arithmetic vs Logical Right Shift:
+---------------------------------
+Arithmetic (>>) sign bit in the most significant (0 for +ve and 1 for -ve)
+10110101 >>1 = 11011010 i.e. -75 >> 1 = -38 (**half's)
+
+Logical (>>>) 0 in the most significant bit
+10110101 >>>1 = 01011010 i.e. -75 >>> 1 = 90 
+
+
+
+TRICKS:
+======
+
+1. Get the ith Bit
+
+return ((x & (1<<i) != 0);
+
+2. Set the ith Bit to 1
+
+return x|(1<<i);
+
+3. Clear Bit:
+
+return x & (1<<i)
+
+
+
+//Multiply
+#include<stdio.h>
+
+main()
+{
+    int a, b, result;
+    printf("\nEnter the numbers to be multiplied:");
+    scanf("%d%d", &a, &b);       // a > b
+    result = 0;
+    while (b != 0)               // Iterate the loop till b == 0
+    {
+        if (b & 01)               // Bitwise & of the value of b with 01
+        {
+            result = result + a;  // Add a to result if b is odd .
+        }
+        a<<=1;                    // Left shifting the value contained in 'a' by 1
+                                  // Multiplies a by 2 for each loop
+        b>>=1;                    // Right shifting the value contained in 'b' by 1.
+    }
+    printf("nResult:%d",result);
+}
+
+Come back to the implementation:
+
+
+1. Add
+
+int add(int x,int y){
+    int a,b;
+    do{
+        a=x&y;
+        b=x^y;
+        x=a<<1;
+        y=b;
+    }while(a);
+    return b;
+}
+The positions that generate a carry and the positions that don’t generate a carry. In each run, the newly generated carrys will be added to the corresponding positions.
+
+2. Subtraction
+
+int negate(int x){
+    return add(~x,1);
+}
+ 
+int sub(int x,int y){
+    return add(x,negate(y));
+}
+We can use the addition function implemented above here, first we implement how to get a negative number of a positive number. The ~x is to get the 1's complement of x and then by adding 1, we get the 2's complement number. This number will be the negative number of x.
+
+Ok, then substration is just a number adds another number's negative number.
+
+3. Multiplication
+
+int mul(int x, int y){
+    int m=1, z =0;
+    if(x<0){
+        x=negate(x);
+        y=negate(y);
+    }
+ 
+    while(x>=m && y) {
+        if (x &m) z=add(y,z);
+        y <<= 1; m<<= 1;
+    }
+    return z;
+}
+The detail explanation for this implementation can be found in :Adding Two Numbers With Bitwise and Shift Operators. Here if x<0, we need to convert it to a positive number, otherwise, the result will be 0.
+
+4. Division
+
+
+int divide(int x,int y){
+    int c=0,sign=0;
+ 
+    if(x<0){
+        x=negate(x);
+        sign^=1;
+    }
+     
+    if(y<0){
+        y=negate(y);
+        sign^=1;
+    }
+ 
+    if(y!=0){
+        while(x>=y){
+            x=sub(x,y);
+            ++c;
+        }
+    }
+    if(sign){
+        c=negate(c);
+    }
+    return c;
+}
+
+If both x and y are positive numbers, then we will going to a while loop. Basically, what the loop does is to subtract y from x if x>=y, the loop will end until x

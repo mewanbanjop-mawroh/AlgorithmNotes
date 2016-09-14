@@ -6,3 +6,16 @@
 2. String Length 
     
     s.length() //arr.length --property
+
+Precision errors in double and float due to
+binary representation
+Immutable: a class whose instances cannot be
+modified
+String: immutable sequence of characters Two ways to create
+Using a literal:   
+    String str = “Hello”; 
+    Goes into a reusable "string pool"  
+    Therefore, String str2 = "Hello"; //will point to the same string str in string pool
+Using new keyword: 
+    String str = new String(“Hello”); 
+    Created as an independent new object (Not in the string pool)
